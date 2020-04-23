@@ -63,7 +63,7 @@ public class TicketMasterAPI {
 			
 			ret = events;
 			
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		// ret is raw data; all we need is the 8 items in the Item class

@@ -1,0 +1,2 @@
+127.0.0.1 - - [29/Apr/2020:21:08:36 -0700] "GET / HTTP/1.1" 200 11216
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:21:08:49 -0700] "GET /Jupiter/WEB-INF/classes/db/mysql/MySQLTableCreation.java HTTP/1.1" 404 682

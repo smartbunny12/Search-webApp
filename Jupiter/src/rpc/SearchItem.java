@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import db.DBConnection;
 import db.DBConnectionFactory;
 import entity.Item;
+import external.TicketMasterAPI;
 
 /**
  * Servlet implementation class SearchItem
@@ -36,23 +38,27 @@ public class SearchItem extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("application/json");
+		double lat = Double.parseDouble(request.getParameter("lat"));
+		double lon = Double.parseDouble(request.getParameter("lon"));
+		
+
+		String keyword = request.getParameter("term");
+		
+		TicketMasterAPI tmAPI = new TicketMasterAPI();
+		List<Item> items = tmAPI.search(lat, lon, keyword);
+		
 		JSONArray array = new JSONArray();
 		try {
-			double lat = Double.parseDouble(request.getParameter("lat"));
-			double lon = Double.parseDouble(request.getParameter("lon"));
-			String keyword = request.getParameter("term");
-			
-			DBConnection connection = DBConnectionFactory.getConnection();
-			List<Item> items = connection.searchItems(lat, lon, keyword);
-			connection.close();
-			
-			for (Item item : items) {
+			for (Item item: items) {
 				JSONObject obj = item.toJSONObject();
 				array.put(obj);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		RpcHelper.writeJsonArray(response, array);
 
 		
 	}

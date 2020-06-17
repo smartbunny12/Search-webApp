@@ -1,0 +1,12 @@
+
+public class Test {
+	
+	public Test () {
+		try {
+			throw(new Exception("for test"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("test for 1");
+	}
+}

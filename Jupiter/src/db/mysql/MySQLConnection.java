@@ -3,12 +3,15 @@ package db.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import db.DBConnection;
 import entity.Item;
+import entity.Item.ItemBuilder;
 import external.TicketMasterAPI;
 
 public class MySQLConnection implements DBConnection {
@@ -76,14 +79,45 @@ public class MySQLConnection implements DBConnection {
 
 	@Override
 	public Set<String> getFavoriteItemIds(String userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Set<Item> getFavoriteItems(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (conn == null) {
+			return new HashSet<>();
+		}
+		Set<Item> favoriteItems = new HashSet<>();
+		Set<String> itemIds = getFavoriteItemIds(userId);
+		
+		try {
+			// ? is the variable that need to be put in; avoid sql injection
+			String sql = "SELECT * FROM items WHERE item_id = ?";  
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			for (String itemId: itemIds) {
+				stmt.setString(1, itemId);
+				
+				// get a row every time; it's a iterator, can get value with .next();
+				ResultSet rs = stmt.executeQuery(); 
+				ItemBuilder builder = new ItemBuilder();
+				while (rs.next()) {
+					builder.setItemId(rs.getString("item_id"));
+					builder.setName(rs.getString("name"));
+					builder.setAddress(rs.getString("address"));
+					builder.setImageUrl(rs.getString("image_url"));
+					builder.setUrl(rs.getString("url"));
+					builder.setCategories(getCategories(itemId));
+					builder.setDistance(rs.getDouble("distance"));
+					builder.setRating(rs.getDouble("rating"));
+					
+					favoriteItems.add(builder.build());
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return favoriteItems;
 	}
 
 	@Override

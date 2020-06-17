@@ -79,25 +79,7 @@ public class MySQLConnection implements DBConnection {
 
 	@Override
 	public Set<String> getFavoriteItemIds(String userId) {
-		// can get itemId through userID in history table
-		if (conn == null) {
-			return new HashSet<>();
-		}
-		Set<String> favoriteItemIds = new HashSet<>();
-		try {
-			String sql = "SELECT item_id from history WHERE user_id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, userId);
-			ResultSet rs = stmt.executeQuery();  //return only contains item_id
-			while (rs.next()) {
-				String itemId = rs.getString("item_id");
-				favoriteItemIds.add(itemId);
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return favoriteItemIds;
+		return null;
 	}
 
 	@Override
@@ -112,7 +94,7 @@ public class MySQLConnection implements DBConnection {
 			// ? is the variable that need to be put in; avoid sql injection
 			String sql = "SELECT * FROM items WHERE item_id = ?";  
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			for (String itemId: itemIds) { // one itemId may has more items
+			for (String itemId: itemIds) {
 				stmt.setString(1, itemId);
 				
 				// get a row every time; it's a iterator, can get value with .next();
@@ -140,25 +122,8 @@ public class MySQLConnection implements DBConnection {
 
 	@Override
 	public Set<String> getCategories(String itemId) {
-		if (conn == null) {
-			return new HashSet<>();
-		}
-		Set<String> categories = new HashSet<>();
-		try {
-			String sql = "SELECT category FROM categories WHERE item_id = ?";  
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, itemId);
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				String category = rs.getString("category");
-				categories.add(category);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return categories;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

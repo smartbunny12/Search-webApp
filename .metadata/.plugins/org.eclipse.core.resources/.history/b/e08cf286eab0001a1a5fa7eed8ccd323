@@ -88,7 +88,7 @@ public class MySQLConnection implements DBConnection {
 			String sql = "SELECT item_id from history WHERE user_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, userId);
-			ResultSet rs = stmt.executeQuery();  //return only contains item_id
+			ResultSet rs = stmt.executeQuery();  //return only item_id
 			while (rs.next()) {
 				String itemId = rs.getString("item_id");
 				favoriteItemIds.add(itemId);
@@ -140,25 +140,8 @@ public class MySQLConnection implements DBConnection {
 
 	@Override
 	public Set<String> getCategories(String itemId) {
-		if (conn == null) {
-			return new HashSet<>();
-		}
-		Set<String> categories = new HashSet<>();
-		try {
-			String sql = "SELECT category FROM categories WHERE item_id = ?";  
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, itemId);
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				String category = rs.getString("category");
-				categories.add(category);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return categories;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import algorithm.GeoRecommendation;
 import db.DBConnection;
 import db.DBConnectionFactory;
 import entity.Item;
@@ -38,18 +40,22 @@ public class ItemHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("user_id");
-		JSONArray array = new JSONArray();
+		double lat = Double.parseDouble(request.getParameter("lat"));
+		double lon = Double.parseDouble(request.getParameter("lon"));
 		
-		DBConnection conn = DBConnectionFactory.getConnection();
-		Set<Item> items = conn.getFavoriteItems(userId);
+		GeoRecommendation recommendation = new GeoRecommendation();
+		List<Item> items = recommendation.recommendItems(userId, lat, lon);
 		
-		for (Item item : items) {
-			JSONObject obj = item.toJSONObject();
-			
-			array.put(obj);
+		JSONArray result = new JSONArray();
+		try {
+			for (Item item : items) {
+				result.put(item.toJSONObject());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		RpcHelper.writeJsonArray(response, array);
+		RpcHelper.writeJsonArray(response, result);
 	}
 
 	/**

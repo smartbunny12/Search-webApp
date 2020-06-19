@@ -6,9 +6,9 @@ public class MySQLDBUtil {
 	public static final String DB_NAME = "eventproject";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "root";
-	public static final String URL ="jdbc:mysql://" 
+	public static final String URL = "jdbc:mysql://" 
 			+ HOSTNAME + ":"+ PORT_NUM +"/"+ DB_NAME 
-			+ "?user=" + USERNAME + "&password=" + "PASSWORD" 
-			+ "&autoReconnect=true&serverTimeZone=UTC";
+			+ "?user=" + USERNAME + "&password=" + PASSWORD 
+			+ "&autoReconnect=true&serverTimezone=UTC";
 	//jdbc:mysql://localhost:8889/eventproject?user=root&password=root&&autoReconnect=true&serverTimeZone=UTC
 }

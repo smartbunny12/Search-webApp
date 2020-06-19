@@ -17,8 +17,14 @@ import entity.Item;
 
 public class GeoRecommendation {
 	public List<Item> recommendItems(String userId, double lat, double lon) {
+		
 		List<Item> recommendItems = new ArrayList<>();
-		DBConnection conn =DBConnectionFactory.getConnection();
+		//Item it = new Item.ItemBuilder().setAddress("abcdsfsa").setName("1234").build();
+		//recommendItems.add(it);
+		//return recommendItems;
+		
+		
+		DBConnection conn = DBConnectionFactory.getConnection();
 		
 		//1. get all favorite items
 		Set<String> favoriteItemIds = conn.getFavoriteItemIds(userId);
@@ -58,13 +64,14 @@ public class GeoRecommendation {
 					filteredItems.add(item);
 				}
 			}
-			Collections.sort(filteredItems, 
-					(x, y) -> Double.compare(x.getDistance(), y.getDistance()));
+			//Collections.sort(filteredItems, 
+			//		(x, y) -> Double.compare(x.getDistance(), y.getDistance()));
 			
 			visitedItems.addAll(items);
 			recommendItems.addAll(filteredItems);
 		}
 	
 		return recommendItems;
+		
 	}
 }

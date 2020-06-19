@@ -1,6 +1,7 @@
 package rpc;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,20 +38,19 @@ public class SearchItem extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setContentType("application/json");
-		double lat = Double.parseDouble(request.getParameter("lat"));
-		double lon = Double.parseDouble(request.getParameter("lon"));
 		
-
-		String keyword = request.getParameter("term");
-		
-		TicketMasterAPI tmAPI = new TicketMasterAPI();
-		List<Item> items = tmAPI.search(lat, lon, keyword);
-		
+		//response.setContentType("application/json");
 		JSONArray array = new JSONArray();
 		try {
-			for (Item item: items) {
+			double lat = Double.parseDouble(request.getParameter("lat"));
+			double lon = Double.parseDouble(request.getParameter("lon"));
+			String keyword = request.getParameter("term");
+			
+			DBConnection connection = DBConnectionFactory.getConnection();
+			List<Item> items = connection.searchItems(lat, lon, keyword);
+			connection.close();
+			
+			for (Item item : items) {
 				JSONObject obj = item.toJSONObject();
 				array.put(obj);
 			}
@@ -58,6 +58,8 @@ public class SearchItem extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+
 		RpcHelper.writeJsonArray(response, array);
 
 		
@@ -68,7 +70,7 @@ public class SearchItem extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		return;
 	}
 
 }

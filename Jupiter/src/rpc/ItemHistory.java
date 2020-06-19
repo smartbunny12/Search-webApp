@@ -40,22 +40,23 @@ public class ItemHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("user_id");
-		double lat = Double.parseDouble(request.getParameter("lat"));
-		double lon = Double.parseDouble(request.getParameter("lon"));
+		JSONArray array = new JSONArray();
 		
-		GeoRecommendation recommendation = new GeoRecommendation();
-		List<Item> items = recommendation.recommendItems(userId, lat, lon);
+		DBConnection conn = DBConnectionFactory.getConnection();
+		Set<Item> items = conn.getFavoriteItems(userId);
 		
-		JSONArray result = new JSONArray();
-		try {
-			for (Item item : items) {
-				result.put(item.toJSONObject());
+		for (Item item : items) {
+			JSONObject obj = item.toJSONObject();
+			
+			try {
+				obj.append("favorite", true);
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			array.put(obj);
+		} 
 		
-		RpcHelper.writeJsonArray(response, result);
+		RpcHelper.writeJsonArray(response, array);
 	}
 
 	/**

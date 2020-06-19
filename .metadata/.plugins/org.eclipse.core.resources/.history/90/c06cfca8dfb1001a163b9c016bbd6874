@@ -189,7 +189,7 @@ public class MySQLConnection implements DBConnection {
 			stmt.setDouble(7, item.getDistance());
 			stmt.execute();
 			
-			sql = "INSERT IGNORE INTO categories VALUES (?,?)";
+			sql = "INSERT IGNORE INTO categories VALUES (?, ?)";
 			stmt = conn.prepareStatement(sql);
 			for (String category : item.getCategories()) {
 				stmt.setString(1, item.getItemId());

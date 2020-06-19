@@ -33,7 +33,6 @@ public class TicketMasterAPI {
 	//]}
 	//"}
 	// 666 Mesina ln 
-	// https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
 	private String getAddress(JSONObject event) throws JSONException {
 		if (!event.isNull("_embedded")) {
 			JSONObject embedded = event.getJSONObject("_embedded");

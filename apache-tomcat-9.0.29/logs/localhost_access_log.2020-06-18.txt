@@ -47,3 +47,6 @@
 0:0:0:0:0:0:0:1 - - [18/Jun/2020:20:31:57 -0700] "POST /Jupiter/recommedation?user_id=1111&lat=37.38&lon=-122.08 HTTP/1.1" 200 73
 0:0:0:0:0:0:0:1 - - [18/Jun/2020:20:32:40 -0700] "GET /Jupiter/recommedation?user_id=1111&lat=37.38&lon=-122.08 HTTP/1.1" 200 73
 0:0:0:0:0:0:0:1 - - [18/Jun/2020:20:35:09 -0700] "GET /Jupiter/recommedation?user_id=1111&lat=37.38&lon=-122.08 HTTP/1.1" 200 150
+0:0:0:0:0:0:0:1 - - [18/Jun/2020:20:48:33 -0700] "GET /Jupiter/search?lat=37.38&lon=-122.08 HTTP/1.1" 200 8001
+0:0:0:0:0:0:0:1 - - [18/Jun/2020:21:04:20 -0700] "GET /Jupiter/search?lat=37.38&lon=-122.08 HTTP/1.1" 200 8152
+0:0:0:0:0:0:0:1 - - [18/Jun/2020:21:04:52 -0700] "GET /Jupiter/recommedation?user_id=1111&lat=37.38&lon=-122.08 HTTP/1.1" 200 7604

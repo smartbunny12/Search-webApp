@@ -3646,3 +3646,33 @@ java.lang.IllegalStateException: source not specified
 	at org.eclipse.wst.jsdt.internal.core.search.indexing.IndexManager$1.execute(IndexManager.java:728)
 	at org.eclipse.wst.jsdt.internal.core.search.processing.JobManager.run(JobManager.java:393)
 	at java.base/java.lang.Thread.run(Thread.java:830)
+!SESSION 2020-07-15 15:01:16.651 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=13.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -data /Users/jintaoshen/Desktop/fanqi/course/project/EventSearch_web -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-07-15 15:01:19.637
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2020-07-15 21:17:39.875 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=13.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -data /Users/jintaoshen/Desktop/fanqi/course/project/EventSearch_web -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-07-15 21:17:43.006
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2020-07-16 14:01:43.736 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=13.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/jintaoshen/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-07-16 14:01:53.410
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

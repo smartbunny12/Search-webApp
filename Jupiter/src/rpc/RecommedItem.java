@@ -19,7 +19,7 @@ import entity.Item;
 /**
  * Servlet implementation class RecommedItem
  */
-@WebServlet("/recommedation")
+@WebServlet("/recommendation")
 public class RecommedItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

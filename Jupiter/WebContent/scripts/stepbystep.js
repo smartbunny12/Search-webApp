@@ -1,7 +1,7 @@
 (function(){
 
 	var user_id ='1111';
-	var user_fullname ='John Smith';
+	var user_fullname ='Anna Smith';
 	var lon = -122.08;
 	var lat = 37.78;
 	
@@ -11,6 +11,7 @@
 	/*step 1: define init function*/
 	function init(){
 		//register event listeners
+		//$() is a function we defined, simplified the getting process
 		$('nearby-btn').addEventListener('click', loadNearbyItems);
 		$('fav-btn').addEventListener('click', loadFavoriteItems);
 		$('recommend-btn').addEventListener('click', loadRecommendedItems);
@@ -24,7 +25,7 @@
 		initGeoLocation();
 			
 	}
-	/*step 5: create $ function, 模拟选择标签的功能*/
+	/*step 5: create $ function, simulate selector*/
 	function $(tag, options){
 		if (!options){
 			return document.getElementById(tag);
@@ -52,10 +53,12 @@
 		// tell the method(get, post) and tell url address
 		xhr.open(method, url, true);
 		
-		//xhr request: ok
+		//onload check response error, and onerror check request error
+		//check xhr response code: ok for 200; get response after xhr.send(); 
 		xhr.onload = function(){
 			// process response
 			if (xhr.status === 200){
+				//callback function is the parameter of ajax
 				callback(xhr.responseText);
 			} else if (xhr.status === 403){
 				onSessionInvalid();
@@ -114,11 +117,11 @@
 	
 	/**step 10: getLocationFromIP **/
 	function getLocationFromIP() {
-		//get location from http://ipinfo.io/json
+		//get location from http://ipinfo.io/json, this is our default location
 		var url = 'http://ipinfo.io/json'
 		var req = null;
 		// when response ==200, execute the function(res) below
-		//function(res)中传入的是server返回的数据：callback(xhr.responseText);
+		// function(res)中传入的是server返回的数据：callback(xhr.responseText);
 		ajax('GET', url, req, function(res){
 			var result = JSON.parse(res);
 			if ('loc' in result){
@@ -174,6 +177,9 @@
 				});
 		
 	}
+	
+
+	
 	/**step 12
 	 * a helper function that makes a navigation button active
 	 * @param btnid - the id of the navigation button
@@ -183,6 +189,7 @@
 		
 		//deactivate all navigation buttons
 		for (var i = 0; i< btns.length; i++) {
+			// ure regular expression: /\bactive\b/ to find the class name with 'active', repalce it with ''
 			btns[i].className = btns[i].className.replace(/\bactive\b/, '');
 		}
 		

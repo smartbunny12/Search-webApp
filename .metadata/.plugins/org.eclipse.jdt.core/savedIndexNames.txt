@@ -14,8 +14,8 @@ INDEX VERSION 1.131+/Users/jintaoshen/Desktop/fanqi/course/project/EventSearch_w
 1816350848.index
 1976389644.index
 3310981544.index
-3027402925.index
 3199676856.index
+3027402925.index
 1466928564.index
 3583182901.index
 2735043593.index
@@ -27,7 +27,6 @@ INDEX VERSION 1.131+/Users/jintaoshen/Desktop/fanqi/course/project/EventSearch_w
 2190680551.index
 2503034669.index
 3305419160.index
-3026521838.index
 2376309484.index
 4287623495.index
 3930492135.index
